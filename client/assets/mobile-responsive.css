@@ -1,0 +1,465 @@
+/* =================================================================
+   MOBILE RESPONSIVE CSS FOR OTRUJJAH PERFUME WEBSITE
+   Version: 2.0
+   Purpose: Complete mobile optimization for ALL pages
+   ================================================================= */
+
+/* ===== TABLETS & SMALL DESKTOPS (max-width: 992px) ===== */
+@media (max-width: 992px) {
+
+    /* Header - Mobile Navigation */
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .mobile-menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: var(--dark-bg, #1a1a1a);
+        transition: 0.3s;
+    }
+
+    .nav-section {
+        display: none;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        z-index: 999;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-menu.active {
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+
+    /* 3 COLUMNS FOR PRODUCTS AND CATEGORIES */
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    .collections-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    .collection-card {
+        height: 180px !important;
+    }
+}
+
+/* ===== MOBILE PHONES (max-width: 768px) ===== */
+@media (max-width: 768px) {
+
+    /* Container */
+    .container {
+        padding: 0 15px;
+        max-width: 100%;
+    }
+
+    /* Header */
+    .main-header {
+        padding: 12px 0;
+    }
+
+    .header-container {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .logo-section {
+        flex: 0 0 auto;
+    }
+
+    .logo-image {
+        max-height: 50px;
+    }
+
+    .search-section {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    /* Hero Section */
+    .hero-banner {
+        padding: 30px 0;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 26px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 15px !important;
+    }
+
+    .perfume-bottle-showcase {
+        max-width: 280px;
+        margin: 20px auto;
+    }
+
+    /* 3 COLUMNS COLLECTIONS - MOBILE OPTIMIZED */
+    .collections-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .collection-card {
+        height: 160px !important;
+        padding: 10px !important;
+    }
+
+    .collection-icon {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 18px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .collection-content h3 {
+        font-size: 13px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .collection-content p {
+        font-size: 10px !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .collection-btn {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+    }
+
+    /* Filter Buttons - 2 rows */
+    .filter-buttons-container {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        flex: 0 0 calc(33.333% - 6px);
+        padding: 10px 8px !important;
+        font-size: 12px !important;
+    }
+
+    /* 3 COLUMNS PRODUCTS - MOBILE OPTIMIZED */
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .product-card {
+        border-radius: 12px;
+    }
+
+    .product-image-container {
+        aspect-ratio: 1;
+    }
+
+    .product-info {
+        padding: 8px !important;
+    }
+
+    .product-name {
+        font-size: 12px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 4px !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .product-notes {
+        font-size: 10px !important;
+        display: none !important;
+        /* Hide on mobile to save space */
+    }
+
+    .product-rating {
+        font-size: 10px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .product-price {
+        font-size: 15px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .product-footer {
+        padding: 0 8px 8px !important;
+        gap: 4px !important;
+    }
+
+    .add-cart-btn {
+        padding: 8px 10px !important;
+        font-size: 11px !important;
+        flex: 1;
+    }
+
+    .wishlist-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 14px !important;
+        flex-shrink: 0;
+    }
+
+    /* Product Detail Page - SMALLER IMAGES */
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .product-detail-image,
+    .product-image-wrapper,
+    .product-main-image,
+    .product-images-container img {
+        max-height: 250px !important;
+        height: 250px !important;
+        object-fit: contain !important;
+        width: 100% !important;
+    }
+
+    .product-detail-info h1 {
+        font-size: 20px !important;
+    }
+
+    .product-detail-info .price {
+        font-size: 22px !important;
+    }
+
+    /* Shopping Cart Page - COMPACT LAYOUT */
+    .cart-container {
+        padding: 15px;
+    }
+
+    .cart-item {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 12px !important;
+        margin-bottom: 10px !important;
+        border-radius: 10px !important;
+    }
+
+    .cart-item-image {
+        width: 70px !important;
+        height: 70px !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .cart-item-details {
+        flex: 1 !important;
+        min-width: 0 !important;
+    }
+
+    .cart-item-details h3 {
+        font-size: 14px !important;
+        margin-bottom: 4px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .cart-item-details p {
+        font-size: 12px !important;
+        margin: 2px 0 !important;
+    }
+
+    .cart-item-price {
+        font-size: 15px !important;
+        font-weight: bold !important;
+        color: var(--primary-orange, #ff6b35) !important;
+    }
+
+    .cart-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+        align-items: flex-end !important;
+        flex-shrink: 0 !important;
+    }
+
+    .quantity-controls {
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+    }
+
+    .quantity-controls button {
+        width: 28px !important;
+        height: 28px !important;
+        padding: 0 !important;
+        font-size: 14px !important;
+        border-radius: 6px !important;
+    }
+
+    .quantity-input {
+        width: 40px !important;
+        padding: 4px !important;
+        font-size: 13px !important;
+        text-align: center !important;
+    }
+
+    .remove-btn {
+        padding: 4px 10px !important;
+        font-size: 11px !important;
+        border-radius: 6px !important;
+    }
+
+    /* Cart Summary */
+    .cart-summary {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 15px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Checkout Page */
+    .checkout-container {
+        padding: 15px;
+    }
+
+    .checkout-form {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 8px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    /* Newsletter in Footer */
+    .newsletter-input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .newsletter-input,
+    .newsletter-btn {
+        width: 100% !important;
+    }
+}
+
+/* ===== SMALL MOBILE PHONES (max-width: 576px) ===== */
+@media (max-width: 576px) {
+
+    /* Even more compact for very small screens */
+    .collection-card {
+        height: 140px !important;
+    }
+
+    .collection-icon {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 14px !important;
+    }
+
+    .collection-content h3 {
+        font-size: 11px !important;
+    }
+
+    .collection-content p {
+        display: none !important;
+        /* Hide description */
+    }
+
+    .collection-btn {
+        padding: 4px 8px !important;
+        font-size: 10px !important;
+    }
+
+    /* Products even more compact */
+    .product-name {
+        font-size: 11px !important;
+    }
+
+    .product-price {
+        font-size: 13px !important;
+    }
+
+    .add-cart-btn {
+        padding: 6px 8px !important;
+        font-size: 10px !important;
+    }
+
+    .wishlist-btn {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 12px !important;
+    }
+
+    /* Cart items more compact */
+    .cart-item-image {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .cart-item-details h3 {
+        font-size: 13px !important;
+    }
+}
+
+/* ===== LANDSCAPE ORIENTATION (PHONES) ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-banner {
+        padding: 20px 0;
+    }
+
+    .perfume-bottle-showcase {
+        max-width: 200px;
+    }
+}
