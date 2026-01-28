@@ -5674,20 +5674,20 @@ textarea::placeholder {
         font-size: 32px;
     }
 
-    /* Product grid - 2 columns on tablets */
+    /* MOBILE: Product grid - 3 columns on tablets and mobile */
     .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-lg);
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: var(--spacing-sm) !important;
     }
 
-    /* Collections grid - 2 columns */
+    /* MOBILE: Collections grid - 3 columns */
     .collections-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-lg);
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: var(--spacing-sm) !important;
     }
 
     .collection-card {
-        height: 300px;
+        height: 180px !important;
     }
 
     /* Featured grid - 2 columns */
@@ -5704,6 +5704,7 @@ textarea::placeholder {
 }
 
 /* ===== Mobile Phones & Small Tablets (max-width: 768px) ===== */
+/* Cache buster: v2.0 - Mobile 3-column layout enforced */
 @media (max-width: 768px) {
 
     /* Typography scaling */
@@ -5742,14 +5743,14 @@ textarea::placeholder {
         margin: 0 auto;
     }
 
-    /* Collections grid - 3 columns on mobile */
+    /* MOBILE OVERRIDE: Collections grid - 3 columns */
     .collections-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--spacing-sm);
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
     }
 
     .collection-card {
-        height: 180px;
+        height: 160px !important;
     }
 
     .collection-icon {
@@ -6018,10 +6019,10 @@ textarea::placeholder {
         /* Hide text, show only icons on very small screens */
     }
 
-    /* Product grid - 3 columns on mobile */
+    /* MOBILE OVERRIDE: Product grid - 3 columns */
     .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--spacing-xs);
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
     }
 
     .product-card {
