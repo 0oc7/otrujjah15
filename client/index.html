@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="otrujjah - متجر العطور الفاخرة الأصلية بأفضل الأسعار والجودة">
+    <title>otrujjah | متجر العطور الفاخرة الأصلية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.min.css">
+    <link rel="stylesheet" href="assets/security.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/images/logo.png" alt="Otrujjah Logo" class="logo-image">
+                </a>
+            </div>
+
+            <div class="search-section">
+                <div class="search-wrapper">
+                    <input
+                        type="text"
+                        id="search-input"
+                        class="search-input"
+                        placeholder="ابحث عن عطرك المفضل في otrujjah..."
+                        autocomplete="off"
+                    >
+                    <button id="search-btn" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
+
+            <nav class="nav-section">
+                <div id="nav-links" class="nav-links">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </a>
+                    <a href="#products" class="nav-link">
+                        <i class="fas fa-spray-can"></i> المنتجات
+                    </a>
+
+                    <a href="car.html" class="nav-link cart-button">
+                        <i class="fas fa-shopping-cart"></i> السلة
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+
+                    <a href="favoret.html" class="nav-link wishlist-button">
+                        <i class="fas fa-heart"></i> المفضلة
+                        <span class="wishlist-badge" id="wishlist-count">0</span>
+                    </a>
+
+                    <div class="user-account-dropdown">
+                        <button type="button" class="nav-link account-button" id="account-toggle">
+    <i class="fas fa-user-circle"></i>
+    <span id="user-name-display">حسابي</span>
+    <i class="fas fa-chevron-down dropdown-icon"></i>
+</button>
+                        <div class="account-dropdown-menu" id="account-menu">
+                            <div class="guest-menu" id="guest-menu">
+                                <div class="dropdown-header">
+                                    <i class="fas fa-user-circle"></i>
+                                    <div>
+                                        <h4>مرحباً بك في otrujjah!</h4>
+                                        <p>سجل الدخول للمتابعة</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-actions">
+                                    <a href="login.html" class="dropdown-btn primary">
+                                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                                    </a>
+                                    <a href="register.html" class="dropdown-btn secondary">
+                                        <i class="fas fa-user-plus"></i> إنشاء حساب
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="logged-in-menu" id="logged-in-menu" style="display: none;">
+                                <div class="dropdown-header">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h4 id="user-full-name"></h4>
+                                        <p id="user-email"></p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" onclick="showProfileModal()" class="dropdown-item">
+                                    <i class="fas fa-user"></i> الملف الشخصي
+                                </a>
+                                <a href="#" onclick="showOrdersModal()" class="dropdown-item">
+                                    <i class="fas fa-box"></i> طلباتي
+                                </a>
+                                <a href="favoret.html" class="dropdown-item">
+                                    <i class="fas fa-heart"></i> المفضلة
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" onclick="logout()" class="dropdown-item logout">
+                                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div> <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-content">
+                <div id="mobile-nav-links" class="mobile-nav-links"></div>
+            </div>
+        </div>
+    </header>
+
+ <section class="hero-banner">
+    <div class="hero-background">
+         <div class="hero-overlay"></div>
+         <div class="hero-pattern"></div>
+    </div>
+
+    <div class="container hero-content">
+        <div class="hero-text-section">
+             <h1 class="hero-title">
+                 اكتشف عطرك <span class="highlight">المميز</span>
+             </h1>
+             <p class="hero-subtitle">
+                 تجربة عطرية فريدة وحصرية في otrujjah
+             </p>
+             <p class="hero-description">
+                 نحن في otrujjah نقدم لك أفضل مجموعة من العطور الفاخرة الأصلية
+             </p>
+             <div class="hero-buttons">
+                 <button class="btn-primary" onclick="scrollToProducts()">
+                     <i class="fas fa-chevron-down"></i> اكتشف المجموعة
+                 </button>
+             </div>
+        </div>
+
+        <div class="hero-image-section">
+            <div class="perfume-bottle-showcase">
+                <div class="bottle-rotation">
+                    <div class="bottle-item active">
+                         <img src="assets/images/products/download (5).jpg" alt="عطر فاخر 1">
+                    </div>
+
+                    <div class="bottle-item">
+                         <img src="assets/images/products/download (8).jpg" alt="عطر فاخر 2">
+                    </div>
+
+                    <div class="bottle-item">
+                         <img src="assets/images/products/images.jpg" alt="عطر فاخر 3">
+                    </div>
+                </div>
+
+                <div class="bottle-dots">
+                    <button class="dot active"></button>
+                    <button class="dot"></button>
+                    <button class="dot"></button>
+                </div>
+
+            </div>
+        </div>
+        </div> </section>
+
+    <section class="special-collections-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">مجموعات otrujjah الخاصة</h2>
+                <p class="section-subtitle">اكتشف العطر المناسب لكل مناسبة وموسم</p>
+            </div>
+
+            <div class="collections-grid">
+                <div class="collection-card gift-collection">
+                    <div class="collection-overlay"></div>
+                    <div class="collection-content">
+                        <div class="collection-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>عطور الهدايا</h3>
+                        <p>هدايا فاخرة للأحباء في المناسبات الخاصة</p>
+                        <button class="collection-btn" onclick="filterByCategory('gift')">
+                            <i class="fas fa-arrow-left"></i>
+                            استكشف المجموعة
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collection-card wedding-collection">
+                    <div class="collection-overlay"></div>
+                    <div class="collection-content">
+                        <div class="collection-icon">
+                            <i class="fas fa-rings-wedding"></i>
+                        </div>
+                        <h3>عطور العريس</h3>
+                        <p>عطور مميزة ليوم زفافك الخاص</p>
+                        <button class="collection-btn" onclick="filterByCategory('wedding')">
+                            <i class="fas fa-arrow-left"></i>
+                            استكشف المجموعة
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collection-card bride-collection">
+                    <div class="collection-overlay"></div>
+                    <div class="collection-content">
+                        <div class="collection-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>عطور العروسة</h3>
+                        <p>روائح ساحرة تليق بأميرة اليوم</p>
+                        <button class="collection-btn" onclick="filterByCategory('bride')">
+                            <i class="fas fa-arrow-left"></i>
+                            استكشف المجموعة
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collection-card summer-collection">
+                    <div class="collection-overlay"></div>
+                    <div class="collection-content">
+                        <div class="collection-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h3>عطور صيفية</h3>
+                        <p>روائح منعشة وخفيفة لأيام الصيف</p>
+                        <button class="collection-btn" onclick="filterByCategory('summer')">
+                            <i class="fas fa-arrow-left"></i>
+                            استكشف المجموعة
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collection-card winter-collection">
+                    <div class="collection-overlay"></div>
+                    <div class="collection-content">
+                        <div class="collection-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <h3>عطور شتوية</h3>
+                        <p>روائح دافئة وغنية لليالي الشتاء</p>
+                        <button class="collection-btn" onclick="filterByCategory('winter')">
+                            <i class="fas fa-arrow-left"></i>
+                            استكشف المجموعة
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collection-card women-special-collection">
+                    <div class="collection-overlay"></div>
+                    <div class="collection-content">
+                        <div class="collection-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3>نسائية راقية</h3>
+                        <p>عطور فاخرة للمرأة العصرية</p>
+                        <button class="collection-btn" onclick="filterByCategory('women-luxury')">
+                            <i class="fas fa-arrow-left"></i>
+                            استكشف المجموعة
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collection-card men-special-collection">
+                    <div class="collection-overlay"></div>
+                    <div class="collection-content">
+                        <div class="collection-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>رجالية فاخرة</h3>
+                        <p>عطور قوية للرجل المميز</p>
+                        <button class="collection-btn" onclick="filterByCategory('men-luxury')">
+                            <i class="fas fa-arrow-left"></i>
+                            استكشف المجموعة
+                        </button>
+                    </div>
+                </div>
+
+                <div class="collection-card occasions-collection">
+                    <div class="collection-overlay"></div>
+                    <div class="collection-content">
+                        <div class="collection-icon">
+                            <i class="fas fa-calendar-star"></i>
+                        </div>
+                        <h3>عطور المناسبات</h3>
+                        <p>عطور مميزة للمناسبات الرسمية</p>
+                        <button class="collection-btn" onclick="filterByCategory('occasions')">
+                            <i class="fas fa-arrow-left"></i>
+                            استكشف المجموعة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="filters-section">
+        <div class="container">
+            <h2 class="filters-title">ابحث حسب النوتة العطرية</h2>
+            <p class="filters-subtitle">اختر النوتة المفضلة لديك واكتشف أفضل العطور</p>
+
+            <div class="filter-buttons-container">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-star"></i>
+                    <span>الكل</span>
+                </button>
+                <button class="filter-btn" data-filter="rose">
+                    <i class="fas fa-rose"></i>
+                    <span>ورد</span>
+                </button>
+                <button class="filter-btn" data-filter="citrus">
+                    <i class="fas fa-lemon"></i>
+                    <span>حمضيات</span>
+                </button>
+                <button class="filter-btn" data-filter="vanilla">
+                    <i class="fas fa-leaf"></i>
+                    <span>فانيليا</span>
+                </button>
+                <button class="filter-btn" data-filter="musk">
+                    <i class="fas fa-heart"></i>
+                    <span>مسك</span>
+                </button>
+                <button class="filter-btn" data-filter="woody">
+                    <i class="fas fa-tree"></i>
+                    <span>خشبي</span>
+                </button>
+            </div>
+            <div class="filter-info">
+                <p id="filter-result-text">يتم عرض جميع المنتجات</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">مجموعة otrujjah الفاخرة</h2>
+                <p class="section-subtitle">اختر من مجموعتنا الحصرية والمتنوعة</p>
+            </div>
+
+            <div class="products-controls">
+                <div class="sort-container">
+                    <label for="sort-select">ترتيب حسب:</label>
+                    <select id="sort-select" class="sort-select">
+                        <option value="newest">الأحدث</option>
+                        <option value="price-low">السعر: من الأقل للأعلى</option>
+                        <option value="price-high">السعر: من الأعلى للأقل</option>
+                        <option value="name">الاسم: أ-ي</option>
+                    </select>
+                </div>
+
+                <div class="view-options">
+                    <button class="view-btn grid-view active" id="grid-view-btn">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="view-btn list-view" id="list-view-btn">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="product-list" class="product-grid"></div>
+
+            <div id="no-products-message" class="no-products-message" style="display: none;">
+                <div class="no-products-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>لا توجد عطور مطابقة</h3>
+                <p>جرب تغيير معايير البحث أو الفلترة</p>
+                <button class="btn-primary" onclick="resetFilters()">
+                    <i class="fas fa-redo"></i> إعادة تعيين الفلاتر
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="featured-title">لماذا تختار otrujjah</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="featured-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>عطور أصلية 100%</h3>
+                    <p>جميع منتجات otrujjah أصلية مع ضمان الجودة والأصالة</p>
+                </div>
+
+                <div class="featured-card">
+                    <div class="featured-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>توصيل سريع</h3>
+                    <p>شحن آمن وسريع من otrujjah إلى جميع أنحاء الجمهورية</p>
+                </div>
+
+                <div class="featured-card">
+                    <div class="featured-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>ضمان الرضا</h3>
+                    <p>ضمان otrujjah 100% أو استرجاع أموالك بدون شروط</p>
+                </div>
+
+                <div class="featured-card">
+                    <div class="featured-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>دعم عملاء متميز</h3>
+                    <p>فريق دعم otrujjah متاح 24/7 للإجابة على استفساراتك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الملف الشخصي -->
+    <section class="profile-section" id="profile-section" style="display: none; padding: 60px 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">معلومات الحساب</h2>
+            <div class="profile-content" style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <div class="profile-avatar" style="text-align: center; margin-bottom: 30px;">
+                    <i class="fas fa-user-circle fa-5x" style="color: var(--primary-orange);"></i>
+                </div>
+                <div class="profile-details" id="profile-details">
+                    <div class="profile-item" style="padding: 15px; border-bottom: 1px solid #eee;">
+                        <i class="fas fa-user" style="width: 30px; color: var(--primary-orange);"></i>
+                        <strong>الاسم:</strong>
+                        <span id="profile-username">جاري التحميل...</span>
+                    </div>
+                    <div class="profile-item" style="padding: 15px; border-bottom: 1px solid #eee;">
+                        <i class="fas fa-envelope" style="width: 30px; color: var(--primary-orange);"></i>
+                        <strong>البريد الإلكتروني:</strong>
+                        <span id="profile-email">جاري التحميل...</span>
+                    </div>
+                    <div class="profile-item" style="padding: 15px; border-bottom: 1px solid #eee;">
+                        <i class="fas fa-id-badge" style="width: 30px; color: var(--primary-orange);"></i>
+                        <strong>رقم المستخدم:</strong>
+                        <span id="profile-id">جاري التحميل...</span>
+                    </div>
+                    <div class="profile-item" id="profile-phone-item" style="padding: 15px; display: none;">
+                        <i class="fas fa-phone" style="width: 30px; color: var(--primary-orange);"></i>
+                        <strong>رقم الهاتف:</strong>
+                        <span id="profile-phone"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الطلبات السابقة -->
+    <section class="orders-section" id="orders-section" style="display: none; padding: 60px 0; background: #fff;">
+        <div class="container">
+            <h2 class="section-title">طلباتي السابقة</h2>
+            <div id="orders-container" class="orders-container" style="max-width: 900px; margin: 0 auto;">
+                <div class="loading-orders" style="text-align: center; padding: 60px;">
+                    <div class="spinner" style="border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-orange); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+                    <p style="margin-top: 20px; color: #666;">جاري تحميل الطلبات...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة عن otrujjah</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي سياسة الاسترجاع في otrujjah؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>يمكنك استرجاع أي منتج من otrujjah خلال 14 يوم من تاريخ الشراء. يجب أن يكون المنتج في حالته الأصلية بدون فتح</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>كم تستغرق عملية الشحن من otrujjah؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>شحن otrujjah يستغرق من 2 إلى 5 أيام عمل حسب محافظتك. قد تأخذ القاهرة والإسكندرية يوم عمل واحد</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل عطور otrujjah أصلية 100%؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>نعم، جميع عطور otrujjah أصلية 100% ومستوردة من المصادر الموثوقة. نقدم ضمان الأصالة على كل منتج</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل يمكن الدفع عند الاستلام في otrujjah؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>نعم، otrujjah توفر خيار الدفع عند الاستلام لجميع محافظات مصر بالإضافة إلى طرق دفع أخرى آمنة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-content">
+                <div class="footer-section about-section">
+                    <h3>عن otrujjah</h3>
+                    <p>متجر otrujjah متخصص في بيع العطور الفاخرة والأصلية من أفضل العلامات التجارية العالمية بأسعار تنافسية</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100063940726654" class="social-link facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/message/X7YJJ6GMUU2GC1" class="social-link whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section links-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="car.html">السلة</a></li>
+                        <li><a href="favoret.html">المفضلة</a></li>
+                        <li><a href="login.html">تسجيل الدخول</a></li>
+                        <li><a href="register.html">إنشاء حساب</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section contact-section">
+                    <h3>تواصل مع otrujjah</h3>
+                    <div class="contact-info">
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@otrujjah.com</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-phone"></i>
+                            <span>+20 110 083 6700</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>القاهرة، مصر</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                 <p>&copy; 2025 otrujjah | . جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="assets/protection.js"></script>
+    <script src="assets/main.min.js?v=2"></script>
+
+    <script>
+    // Add a simple debug log to verify page is loading
+    console.log('✅ Index page loaded successfully');
+    
+    // Backup filterByCategory function in case main.js doesn't load it
+    if (typeof window.filterByCategory === 'undefined') {
+        window.filterByCategory = function(category) {
+            const categoryPages = {
+                'gift': 'gifts.html',
+                'wedding': 'aris.html',
+                'bride': 'arosa.html',
+                'summer': 'summer.html',
+                'winter': 'winter.html',
+                'women': 'women.html',
+                'women-luxury': 'women.html',
+                'men': 'mens.html',
+                'men-luxury': 'mens.html',
+                'occasions': 'monaspa.html'
+            };
+            
+            const page = categoryPages[category];
+            if (page) {
+                window.location.href = page;
+            } else {
+                console.warn('Unknown category:', category);
+                window.location.href = 'index.html';
+            }
+        };
+        console.log('✅ filterByCategory loaded as backup');
+    } else {
+        console.log('✅ filterByCategory already exists from main.js');
+    }
+    </script>
+</body>
+</html>

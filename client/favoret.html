@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="قائمة المفضلة في متجر otrujjah للعطور الفاخرة الأصلية">
+    <title>قائمة المفضلة | otrujjah - متجر العطور الفاخرة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+             <div class="logo-section">
+    <a href="index.html" class="logo-link">
+        <img src="assets/images/logo.png" alt="Otrujjah Logo" class="logo-image">
+    </a>
+</div>
+
+            <div class="search-section">
+                <div class="search-wrapper">
+                    <input type="text" id="search-input" class="search-input" placeholder="ابحث عن عطرك المفضل..." autocomplete="off">
+                    <button id="search-btn" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <nav class="nav-section">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </a>
+                    <a href="index.html#products" class="nav-link">
+                        <i class="fas fa-spray-can"></i> المنتجات
+                    </a>
+                    <a href="car.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> السلة
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+                    <a href="favoret.html" class="nav-link active">
+                        <i class="fas fa-heart"></i> المفضلة
+                        <span class="wishlist-badge" id="wishlist-count">0</span>
+                    </a>
+                     <div class="user-account-dropdown">
+                        <button class="nav-link account-button" id="account-toggle">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="user-name-display">حسابي</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </button>
+                        <div class="account-dropdown-menu" id="account-menu">
+                            <div class="guest-menu" id="guest-menu">
+                                <div class="dropdown-header">
+                                    <i class="fas fa-user-circle"></i>
+                                    <div>
+                                        <h4>مرحباً بك في otrujjah!</h4>
+                                        <p>سجل الدخول للمتابعة</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-actions">
+                                    <a href="login.html" class="dropdown-btn primary">
+                                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                                    </a>
+                                    <a href="register.html" class="dropdown-btn secondary">
+                                        <i class="fas fa-user-plus"></i> إنشاء حساب
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="logged-in-menu" id="logged-in-menu" style="display: none;">
+                                <div class="dropdown-header">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h4 id="user-full-name"></h4>
+                                        <p id="user-email"></p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" onclick="showProfileModal()" class="dropdown-item">
+                                    <i class="fas fa-user"></i> الملف الشخصي
+                                </a>
+                                <a href="#" onclick="showOrdersModal()" class="dropdown-item">
+                                    <i class="fas fa-box"></i> طلباتي
+                                </a>
+                                <a href="favoret.html" class="dropdown-item">
+                                    <i class="fas fa-heart"></i> المفضلة
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" onclick="logout()" class="dropdown-item logout">
+                                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+         <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-content">
+                <div id="mobile-nav-links" class="mobile-nav-links"></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>قائمة المفضلة</h1>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span>/</span>
+                <span>المفضلة</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="wishlist-section">
+        <div class="container">
+            <div class="wishlist-header">
+                <h2>عطورك المفضلة (<span id="wishlist-items-count">0</span>)</h2>
+                <button class="clear-wishlist-btn" onclick="app.clearWishlist()"> <i class="fas fa-trash"></i> مسح القائمة
+                </button>
+            </div>
+
+            <div id="wishlist-items" class="wishlist-grid product-grid"> </div>
+
+            <div id="empty-wishlist" class="empty-wishlist" style="display: none;">
+                <div class="empty-wishlist-icon">
+                    <i class="fas fa-heart-broken"></i>
+                </div>
+                <h3>قائمة المفضلة فارغة</h3>
+                <p>لم تقم بإضافة أي منتجات إلى المفضلة بعد</p>
+                <a href="index.html#products" class="btn-primary">
+                    <i class="fas fa-shopping-bag"></i> تصفح المنتجات
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="wishlist-benefits-section">
+        <div class="container">
+            <h2 class="section-title">لماذا قائمة المفضلة؟</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <h3>احفظ مفضلاتك</h3>
+                    <p>احفظ العطور التي تعجبك لتعود إليها لاحقاً</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>تنبيهات الأسعار</h3>
+                    <p>احصل على تنبيه عند انخفاض سعر منتج مفضل</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>شارك قائمتك</h3>
+                    <p>شارك قائمة مفضلتك مع الأصدقاء والعائلة</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>تسوق سريع</h3>
+                    <p>أضف جميع منتجاتك المفضلة للسلة بنقرة واحدة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-content">
+                <div class="footer-section about-section">
+                    <h3>عن otrujjah</h3>
+                    <p>متجر otrujjah متخصص في بيع العطور الفاخرة والأصلية من أفضل العلامات التجارية العالمية بأسعار تنافسية</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100063940726654" class="social-link facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/message/X7YJJ6GMUU2GC1" class="social-link whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section links-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="index.html#products">المنتجات</a></li>
+                        <li><a href="car.html">السلة</a></li>
+                        <li><a href="favoret.html">المفضلة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section contact-section">
+                    <h3>تواصل معنا</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> info@otrujjah.com</p>
+                        <p><i class="fas fa-phone"></i> +20 110 083 6700</p>
+                        <p><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 otrujjah | . جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="assets/main.min.js?v=2"></script>
+     </body>
+</html>

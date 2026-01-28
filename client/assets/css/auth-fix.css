@@ -1,0 +1,54 @@
+/* Centered Auth Card Fix */
+.auth-wrapper.single-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: var(--spacing-md);
+    background: transparent;
+    box-shadow: none;
+}
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 550px;
+    animation: fadeInUp 0.5s ease;
+}
+
+.auth-header {
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    font-size: 28px;
+    color: var(--primary-orange);
+    margin-bottom: 10px;
+}
+
+.auth-header p {
+    color: var(--text-muted);
+}
+
+.form-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+}
+
+.link-primary {
+    color: var(--primary-orange);
+    font-weight: 600;
+}
+
+.link-primary:hover {
+    text-decoration: underline;
+}
+
+/* Ensure gender selection fits */
+.gender-selection {
+    grid-template-columns: repeat(2, 1fr);
+}

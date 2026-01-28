@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تسجيل الدخول إلى لوحة إدارة otrujjah">
+    <title>تسجيل الدخول | otrujjah Admin</title>
+
+    <link rel="stylesheet" href="assets/style.min.css">
+    <link rel="stylesheet" href="assets/security.css">
+    <link rel="stylesheet" href="assets/admin-custom.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-login-page">
+    <div class="admin-login-wrapper">
+        <div class="admin-login-container">
+            <div class="login-header">
+                <!-- ✅ تصحيح مسار اللوجو -->
+                <img src="../client/assets/images/logo.png" alt="Otrujjah Logo" class="login-logo"
+                    onerror="this.style.display='none'">
+                <h1 class="login-title">لوحة إدارة otrujjah</h1>
+                <p class="login-subtitle">تسجيل الدخول للوصول إلى لوحة الإدارة</p>
+            </div>
+
+            <form id="admin-login-form" class="login-form">
+                <div class="form-group">
+                    <label for="admin-email"><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+                    <input type="email" id="admin-email" name="email" placeholder="admin@example.com" required
+                        autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-password"><i class="fas fa-lock"></i> كلمة المرور</label>
+                    <div class="password-input-wrapper" style="position: relative;">
+                        <input type="password" id="admin-password" name="password" placeholder="أدخل كلمة المرور"
+                            required autocomplete="current-password" style="padding-left: 45px;">
+                        <button type="button" class="toggle-password"
+                            onclick="togglePasswordVisibility('admin-password')"
+                            style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; cursor: pointer; color: #666; padding: 5px 10px;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me checkbox-container">
+                        <input type="checkbox" id="remember-me">
+                        <span>تذكرني</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                </button>
+
+                <p id="login-error" class="error-message" style="display: none; margin-top: 15px;"></p>
+            </form>
+
+            <div class="login-footer">
+                <p>© 2025 otrujjah. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ إزالة main.js لتجنب التعارض -->
+    <script>
+        // ========== Constants ==========
+        const API_CONFIG = {
+            API_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                ? 'http://localhost:3000/api'
+                : 'https://otrojjah.vercel.app/api',
+            SESSION_KEY: 'otrujjah_admin_session',
+            TOKEN_KEY: 'otrujjah_admin_token'
+        };
+
+        // ========== Toggle Password Visibility ==========
+        function togglePasswordVisibility(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.parentElement.querySelector('.toggle-password');
+            const icon = button.querySelector('i');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        // ========== Check if already logged in ==========
+        function checkExistingAuth() {
+            const token = localStorage.getItem(API_CONFIG.TOKEN_KEY) || sessionStorage.getItem(API_CONFIG.TOKEN_KEY);
+            const sessionData = localStorage.getItem(API_CONFIG.SESSION_KEY) || sessionStorage.getItem(API_CONFIG.SESSION_KEY);
+
+            if (token && sessionData) {
+                try {
+                    const adminData = JSON.parse(sessionData);
+                    if (adminData && adminData.role === 'admin') {
+                        console.log('✅ Already logged in, redirecting...');
+                        window.location.href = 'index.html';
+                        return true;
+                    }
+                } catch (e) {
+                    console.error('Error parsing session data:', e);
+                }
+            }
+            return false;
+        }
+
+        // ========== Show Toast Notification ==========
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast-notification ${type}`;
+            toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+            toast.style.cssText = 'position: fixed; bottom: 20px; left: 20px; padding: 15px 20px; background: ' +
+                (type === 'success' ? '#4CAF50' : '#F44336') +
+                '; color: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 10000; animation: slideIn 0.3s ease;';
+
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ========== Show Error ==========
+        function showError(element, message) {
+            if (element) {
+                element.textContent = message;
+                element.style.display = 'block';
+                element.style.animation = 'shake 0.5s';
+            }
+        }
+
+        // ========== Handle Login ==========
+        async function handleAdminLogin(e) {
+            e.preventDefault();
+            console.log('🔐 Login form submitted');
+
+            const email = document.getElementById('admin-email')?.value.trim();
+            const password = document.getElementById('admin-password')?.value;
+            const remember = document.getElementById('remember-me')?.checked;
+            const errorMsg = document.getElementById('login-error');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+
+            if (errorMsg) errorMsg.style.display = 'none';
+
+            if (!email || !password) {
+                showError(errorMsg, 'يرجى إدخال البريد الإلكتروني وكلمة المرور.');
+                return;
+            }
+
+            // Disable submit button
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
+            }
+
+            try {
+                const apiUrl = `${API_CONFIG.API_URL}/auth/admin/login`;
+                console.log('🌐 Calling API:', apiUrl);
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                console.log('📡 Response status:', response.status);
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    let errorMessage = 'بيانات الدخول غير صحيحة أو ليس لديك صلاحيات الإدارة.';
+
+                    try {
+                        const errorData = JSON.parse(errorText);
+                        errorMessage = errorData.message || errorMessage;
+                    } catch (e) {
+                        errorMessage = errorText || errorMessage;
+                    }
+
+                    throw new Error(errorMessage);
+                }
+
+                const data = await response.json();
+                console.log('✅ Login response:', data);
+
+                // Extract token and user data
+                const token = data.token;
+                const userData = data.data || data; // Backend may return data in data.data or directly
+
+                console.log('📦 User data:', userData);
+
+                // Extract fields safely
+                const userUsername = userData.username || '';
+                const userEmail = userData.email || '';
+                const userRole = userData.role || '';
+                const userRoles = userData.roles || [];
+
+                console.log('📦 Extracted:', { token, userUsername, userEmail, userRole, userRoles });
+
+                // Check admin role - support both 'role' and 'roles' array
+                const isAdmin = userRole === 'admin' || (userRoles && (userRoles.includes('ROLE_ADMIN') || userRoles.includes('admin')));
+
+                if (!token) {
+                    throw new Error('لم يتم استلام رمز المصادقة من الخادم.');
+                }
+
+                if (!isAdmin) {
+                    console.error('❌ Not admin. Role:', userRole, 'Roles:', userRoles);
+                    throw new Error('ليس لديك صلاحيات الوصول للوحة التحكم.');
+                }
+
+                console.log('✅ Admin verified');
+
+                // Save session
+                const storage = remember ? localStorage : sessionStorage;
+                storage.setItem(API_CONFIG.TOKEN_KEY, token);
+                storage.setItem(API_CONFIG.SESSION_KEY, JSON.stringify({
+                    username: userUsername,
+                    email: userEmail,
+                    role: userRole
+                }));
+
+                console.log('💾 Session saved to', remember ? 'localStorage' : 'sessionStorage');
+                showToast('تم تسجيل الدخول بنجاح! جاري التحويل...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+
+            } catch (error) {
+                console.error('❌ Login error:', error);
+                showError(errorMsg, error.message);
+                showToast(error.message, 'error');
+            } finally {
+                // Re-enable submit button
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
+                }
+            }
+        }
+
+        // ========== Initialize ==========
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('🚀 Login page loaded');
+
+            // Check if already logged in
+            if (checkExistingAuth()) {
+                return;
+            }
+
+            // Setup form
+            const form = document.getElementById('admin-login-form');
+            if (form) {
+                form.addEventListener('submit', handleAdminLogin);
+                console.log('✅ Login form handler attached');
+            } else {
+                console.error('❌ Login form not found!');
+            }
+
+            // Add CSS animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(-100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(-100%); opacity: 0; }
+                }
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-10px); }
+                    50% { transform: translateX(10px); }
+                    75% { transform: translateX(-10px); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+    <script src="assets/protection.js"></script>
+</body>
+
+</html>

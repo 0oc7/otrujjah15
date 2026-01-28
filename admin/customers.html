@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة العملاء | otrujjah Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.min.css">
+    <link rel="stylesheet" href="assets/security.css">
+    <link rel="stylesheet" href="assets/admin-custom.css">
+</head>
+
+<body class="admin-page">
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../client/assets/images/logo.png" alt="otrujjah" class="sidebar-logo"
+                onerror="this.style.display='none'">
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>لوحة التحكم</span>
+            </a>
+            <a href="products.html" class="nav-item">
+                <i class="fas fa-spray-can"></i>
+                <span>إدارة المنتجات</span>
+            </a>
+            <a href="orders.html" class="nav-item">
+                <i class="fas fa-shopping-bag"></i>
+                <span>الطلبات</span>
+            </a>
+            <a href="customers.html" class="nav-item active">
+                <i class="fas fa-users"></i>
+                <span>العملاء</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-logout" onclick="adminLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>إدارة العملاء</h1>
+            </div>
+
+            <div class="topbar-right">
+                <div class="admin-profile">
+                    <img src="assets/images/admin-avatar.svg" alt="Admin" class="profile-avatar"
+                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23FF6B35%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22 font-family=%22Arial%22%3EA%3C/text%3E%3C/svg%3E'">
+                    <div class="profile-info">
+                        <span class="profile-name" id="admin-name">المسؤول</span>
+                        <span class="profile-role">مدير النظام</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="actions-bar">
+                <div class="actions-right" style="width: 100%;">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="customer-search" placeholder="ابحث عن عميل باسمه أو بريده الإلكتروني...">
+                    </div>
+
+                    <button class="btn-secondary" onclick="exportCustomers()">
+                        <i class="fas fa-download"></i>
+                        تصدير
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>
+                        <i class="fas fa-list"></i>
+                        قائمة العملاء
+                    </h3>
+                    <span id="customers-count"
+                        style="background: #FF6B35; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px;">0</span>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>الرقم</th>
+                                    <th>اسم العميل</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>رقم الهاتف</th>
+                                    <th>تاريخ التسجيل</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customers-table-body">
+                                <tr>
+                                    <td colspan="6" class="text-center">جاري تحميل العملاء...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="customer-details-modal" class="admin-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>تفاصيل العميل</h3>
+                    <button class="modal-close" onclick="closeCustomerModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-section">
+                        <h4><i class="fas fa-user"></i> المعلومات الأساسية</h4>
+                        <div id="customer-details-content"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4><i class="fas fa-shopping-bag"></i> إحصائيات الطلبات</h4>
+                        <div id="customer-orders-stats"></div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn-secondary" onclick="closeCustomerModal()">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/protection.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="assets/main.min.js?v=2"></script>
+</body>
+
+</html>

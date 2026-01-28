@@ -1,0 +1,76 @@
+/* ===================================
+   🔒 SECURITY & PROTECTION STYLES
+   =================================== */
+
+/* منع تحديد النص في المناطق الحساسة */
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* حماية الصور */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
+/* السماح بالتفاعل مع الأزرار والروابط */
+button, a, input, textarea, select {
+    pointer-events: auto !important;
+}
+
+/* إخفاء التعليقات في الكود (لن يعمل بشكل كامل) */
+/* لكن يمكن إضافة طبقة إضافية من الحماية */
+
+/* منع Print */
+@media print {
+    body {
+        display: none !important;
+    }
+}
+
+/* Watermark غير مرئي */
+body::before {
+    content: "© Otrujjah - Protected Content";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0.01;
+    font-size: 1px;
+}
+
+/* حماية إضافية للنصوص الحساسة */
+.sensitive-data {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* منع السحب والإفلات */
+* {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+
+/* السماح بالسحب للعناصر التفاعلية */
+input[type="file"] {
+    -webkit-user-drag: auto;
+    -khtml-user-drag: auto;
+    -moz-user-drag: auto;
+    -o-user-drag: auto;
+}
+

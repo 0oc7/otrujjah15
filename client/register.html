@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="إنشاء حساب جديد في متجر otrujjah للعطور الفاخرة الأصلية">
+    <meta name="keywords" content="تسجيل، إنشاء حساب، otrujjah، عطور فاخرة">
+    <title>إنشاء حساب جديد | otrujjah - متجر العطور الفاخرة</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/style.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- ========== HEADER ========== -->
+    <header class="main-header">
+        <div class="container header-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/images/logo.png" alt="Otrujjah Logo" class="logo-image">
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav-section">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </a>
+                    <a href="login.html" class="nav-link">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== REGISTER PAGE ========== -->
+    <main class="auth-page">
+        <div class="container">
+            <div class="auth-wrapper">
+                <!-- Image Section -->
+                <div class="auth-image-section register-image">
+                    <div class="auth-overlay"></div>
+                    <div class="auth-content">
+                        <h2>انضم إلى عائلة otrujjah</h2>
+                        <p>سجل الآن واستمتع بتجربة تسوق فريدة مع أفضل العطور الفاخرة</p>
+                        <div class="auth-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>عروض حصرية للأعضاء</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>تتبع طلباتك بسهولة</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>قائمة مفضلة شخصية</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>نقاط ولاء ومكافآت</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>إشعارات بأحدث المنتجات</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Section -->
+                <div class="auth-form-section">
+                    <div class="form-container">
+                        <div class="form-header">
+                            <h2>إنشاء حساب جديد</h2>
+                            <p>أدخل بياناتك لإنشاء حساب في otrujjah</p>
+                        </div>
+
+                        <!-- Registration Form -->
+                        <form id="register-form" class="auth-form">
+                            <!-- Full Name -->
+                            <div class="form-group">
+                                <label for="username">
+                                    <i class="fas fa-user"></i>
+                                    الاسم الكامل
+                                </label>
+                                <input type="text" id="username" name="username" placeholder="أدخل اسمك الكامل" required
+                                    autocomplete="name" minlength="3">
+                                <span class="input-hint">يجب أن يكون الاسم 3 أحرف على الأقل</span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i>
+                                    البريد الإلكتروني
+                                </label>
+                                <input type="email" id="email" name="email" placeholder="example@domain.com" required
+                                    autocomplete="email">
+                                <span class="input-hint">سنرسل رسالة تأكيد إلى هذا البريد</span>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="form-group">
+                                <label for="phone">
+                                    <i class="fas fa-phone"></i>
+                                    رقم الهاتف
+                                </label>
+                                <input type="tel" id="phone" name="phone" placeholder="01xxxxxxxxx" required
+                                    autocomplete="tel" pattern="01[0-9]{9}">
+                                <span class="input-hint">أدخل رقم هاتف مصري صحيح</span>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label for="password">
+                                    <i class="fas fa-lock"></i>
+                                    كلمة المرور
+                                </label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="password" name="password"
+                                        placeholder="أدخل كلمة مرور قوية" required autocomplete="new-password"
+                                        minlength="6">
+                                    <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="password-strength" id="password-strength">
+                                    <div class="strength-bar">
+                                        <div class="strength-bar-fill" id="strength-bar-fill"></div>
+                                    </div>
+                                    <span class="strength-text" id="strength-text">قوة كلمة المرور</span>
+                                </div>
+                                <span class="input-hint">يجب أن تكون 6 أحرف على الأقل</span>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="form-group">
+                                <label for="confirm-password">
+                                    <i class="fas fa-lock"></i>
+                                    تأكيد كلمة المرور
+                                </label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="confirm-password" name="confirm-password"
+                                        placeholder="أعد إدخال كلمة المرور" required autocomplete="new-password">
+                                    <button type="button" class="toggle-password"
+                                        onclick="togglePassword('confirm-password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <span class="input-hint" id="password-match-hint"></span>
+                            </div>
+
+                            <!-- Gender Selection (Optional) -->
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-venus-mars"></i>
+                                    النوع (اختياري)
+                                </label>
+                                <div class="gender-selection">
+                                    <label class="gender-option">
+                                        <input type="radio" name="gender" value="male">
+                                        <div class="gender-card">
+                                            <i class="fas fa-mars"></i>
+                                            <span>ذكر</span>
+                                        </div>
+                                    </label>
+                                    <label class="gender-option">
+                                        <input type="radio" name="gender" value="female">
+                                        <div class="gender-card">
+                                            <i class="fas fa-venus"></i>
+                                            <span>أنثى</span>
+                                        </div>
+                                    </label>
+                                    <label class="gender-option">
+                                        <input type="radio" name="gender" value="other" checked>
+                                        <div class="gender-card">
+                                            <i class="fas fa-user"></i>
+                                            <span>آخر</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="terms" required>
+                                    <span>
+                                        أوافق على
+                                        <a href="#" onclick="showPoliciesModal()">الشروط والأحكام</a>
+                                        و
+                                        <a href="#" onclick="showPrivacyModal()">سياسة الخصوصية</a>
+                                        الخاصة بـ otrujjah
+                                    </span>
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn-primary btn-block">
+                                <i class="fas fa-user-plus"></i>
+                                إنشاء حساب
+                            </button>
+
+                            <!-- Messages -->
+                            <p id="error-message" class="error"></p>
+                            <p id="success-message" class="success"></p>
+                        </form>
+
+                        <!-- Login Link -->
+                        <p class="form-switch">
+                            لديك حساب بالفعل؟
+                            <a href="login.html">سجل الدخول من هنا</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 otrujjah | عطرجه. جميع الحقوق محفوظة.</p>
+                <div class="footer-bottom-links">
+                    <a href="#" onclick="showPrivacyModal()">سياسة الخصوصية</a>
+                    <span>|</span>
+                    <a href="#" onclick="showPoliciesModal()">شروط الاستخدام</a>
+                    <span>|</span>
+                    <a href="index.html">العودة للرئيسية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== MODALS ========== -->
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-shield-alt"></i> سياسة الخصوصية</h3>
+                    <button class="modal-close" onclick="closeModal('privacy-modal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="policies-content">
+                        <h4><i class="fas fa-info-circle"></i> مقدمة</h4>
+                        <p>نحن في otrujjah نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية. توضح هذه السياسة كيفية جمع
+                            واستخدام وحماية معلوماتك.</p>
+
+                        <h4><i class="fas fa-database"></i> البيانات التي نجمعها</h4>
+                        <p>نقوم بجمع المعلومات التالية:</p>
+                        <ul>
+                            <li>المعلومات الشخصية (الاسم، البريد الإلكتروني، رقم الهاتف)</li>
+                            <li>معلومات الحساب والدفع</li>
+                            <li>سجل الطلبات والمشتريات</li>
+                            <li>معلومات التصفح والاستخدام</li>
+                        </ul>
+
+                        <h4><i class="fas fa-user-shield"></i> كيف نستخدم بياناتك</h4>
+                        <p>نستخدم بياناتك من أجل:</p>
+                        <ul>
+                            <li>معالجة وإتمام طلباتك</li>
+                            <li>تحسين خدماتنا وتجربة المستخدم</li>
+                            <li>إرسال تحديثات وعروض خاصة (إذا وافقت)</li>
+                            <li>التواصل معك بخصوص حسابك أو طلباتك</li>
+                        </ul>
+
+                        <h4><i class="fas fa-lock"></i> حماية البيانات</h4>
+                        <p>نستخدم أحدث تقنيات التشفير والأمان لحماية بياناتك. لا نشارك معلوماتك مع أطراف ثالثة دون
+                            موافقتك الصريحة.</p>
+
+                        <h4><i class="fas fa-cookie-bite"></i> ملفات تعريف الارتباط</h4>
+                        <p>نستخدم ملفات تعريف الارتباط (Cookies) لتحسين تجربتك على موقعنا وتذكر تفضيلاتك.</p>
+
+                        <h4><i class="fas fa-envelope"></i> حقوقك</h4>
+                        <p>لديك الحق في الوصول إلى بياناتك، تعديلها، أو حذفها في أي وقت. للاستفسارات، اتصل بنا على:
+                            info@otrujjah.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div id="policies-modal" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-file-contract"></i> الشروط والأحكام</h3>
+                    <button class="modal-close" onclick="closeModal('policies-modal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="policies-content">
+                        <h4><i class="fas fa-handshake"></i> القبول بالشروط</h4>
+                        <p>باستخدام موقع otrujjah، فإنك توافق على الالتزام بهذه الشروط والأحكام.</p>
+
+                        <h4><i class="fas fa-certificate"></i> المنتجات والخدمات</h4>
+                        <p>جميع المنتجات المعروضة على otrujjah أصلية 100% ونضمن جودتها. نحتفظ بالحق في تعديل الأسعار أو
+                            توفر المنتجات في أي وقت.</p>
+
+                        <h4><i class="fas fa-credit-card"></i> الدفع والتسعير</h4>
+                        <p>جميع الأسعار معروضة بالجنيه المصري وتشمل الضرائب. نقبل الدفع عند الاستلام والدفع الإلكتروني.
+                        </p>
+
+                        <h4><i class="fas fa-shipping-fast"></i> الشحن والتوصيل</h4>
+                        <p>نقوم بالتوصيل لجميع محافظات مصر خلال 2-5 أيام عمل. رسوم الشحن تعتمد على الموقع.</p>
+
+                        <h4><i class="fas fa-undo"></i> سياسة الاسترجاع</h4>
+                        <p>يمكنك استرجاع المنتجات غير المفتوحة خلال 14 يوم من تاريخ الاستلام.</p>
+
+                        <h4><i class="fas fa-user-lock"></i> حساب المستخدم</h4>
+                        <p>أنت مسؤول عن الحفاظ على سرية معلومات حسابك وكلمة المرور الخاصة بك.</p>
+
+                        <h4><i class="fas fa-balance-scale"></i> القانون الساري</h4>
+                        <p>تخضع هذه الشروط والأحكام لقوانين جمهورية مصر العربية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Registration Modal -->
+    <div id="success-registration-modal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>تم إنشاء الحساب بنجاح!</h3>
+                    <p>مرحباً بك في عائلة otrujjah</p>
+                    <p>سيتم تحويلك إلى صفحة تسجيل الدخول خلال لحظات...</p>
+                    <div class="success-animation">
+                        <div class="confetti"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <p>جاري إنشاء حسابك...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/main.min.js?v=2"></script>
+</body>
+
+</html>

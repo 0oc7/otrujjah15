@@ -1,0 +1,56 @@
+/* Compact Register Page Overrides */
+.auth-page {
+    padding-top: 120px !important;
+    /* Keep header clearance */
+    padding-bottom: 40px !important;
+    min-height: auto !important;
+    align-items: flex-start !important;
+    /* Avoid centering vertically if it causes cut-off */
+}
+
+.auth-wrapper {
+    max-width: 950px !important;
+    margin-bottom: 20px !important;
+}
+
+.auth-image-section {
+    min-height: 550px !important;
+    padding: 30px !important;
+}
+
+.auth-form-section {
+    padding: 30px 40px !important;
+}
+
+.form-header {
+    margin-bottom: 20px !important;
+}
+
+.form-header h2 {
+    font-size: 24px !important;
+    margin-bottom: 5px !important;
+}
+
+.auth-form .form-group {
+    margin-bottom: 15px !important;
+}
+
+.auth-form label {
+    margin-bottom: 5px !important;
+    font-size: 13px !important;
+}
+
+.auth-form input {
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+}
+
+/* Compact features list on the right */
+.auth-features {
+    margin-top: 30px !important;
+    gap: 12px !important;
+}
+
+.feature-item {
+    padding: 8px 15px !important;
+}

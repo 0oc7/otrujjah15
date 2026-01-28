@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="الملف الشخصي - otrujjah">
+    <title>الملف الشخصي | otrujjah - متجر العطور الفاخرة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.min.css">
+    <style>
+        .profile-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px 0;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #805e1f 0%, #966c2d 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-avatar i {
+            font-size: 60px;
+            color: white;
+        }
+
+        .profile-header h1 {
+            margin: 0 0 10px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .profile-header p {
+            margin: 5px 0;
+            opacity: 0.95;
+            font-size: 1.1rem;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(201, 169, 110, 0.2);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: #8f671e;
+            margin-bottom: 10px;
+        }
+
+        .stat-card h3 {
+            margin: 10px 0 5px;
+            font-size: 2rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .stat-card p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .profile-content {
+            padding: 40px;
+        }
+
+        .info-section {
+            margin-bottom: 30px;
+        }
+
+        .info-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #866323;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #725725;
+        }
+
+        .info-item label {
+            display: block;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .info-item .value {
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .info-item i {
+            color: #6d511d;
+            margin-left: 8px;
+            width: 20px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #856529 0%, #886229 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(201, 169, 110, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(201, 169, 110, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #c9a96e;
+            border: 2px solid #c9a96e;
+        }
+
+        .btn-secondary:hover {
+            background: #c9a96e;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                margin: 20px;
+                border-radius: 15px;
+            }
+
+            .profile-header {
+                padding: 30px 20px;
+            }
+
+            .profile-content {
+                padding: 20px;
+            }
+
+            .profile-stats {
+                padding: 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/images/logo.png" alt="Otrujjah Logo" class="logo-image">
+                </a>
+            </div>
+            <nav class="nav-section">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </a>
+                    <a href="index.html#products" class="nav-link">
+                        <i class="fas fa-spray-can"></i> المنتجات
+                    </a>
+                    <a href="car.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> السلة
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+                    <a href="favoret.html" class="nav-link">
+                        <i class="fas fa-heart"></i> المفضلة
+                        <span class="wishlist-badge" id="wishlist-count">0</span>
+                    </a>
+                    <div class="user-account-dropdown">
+                        <button class="nav-link account-button" id="account-toggle">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="user-name-display">حسابي</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </button>
+                        <div class="account-dropdown-menu" id="account-menu">
+                            <div class="guest-menu" id="guest-menu">
+                                <div class="dropdown-header">
+                                    <i class="fas fa-user-circle"></i>
+                                    <div>
+                                        <h4>مرحباً بك في otrujjah!</h4>
+                                        <p>سجل الدخول للمتابعة</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-actions">
+                                    <a href="login.html" class="dropdown-btn primary">
+                                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                                    </a>
+                                    <a href="register.html" class="dropdown-btn secondary">
+                                        <i class="fas fa-user-plus"></i> إنشاء حساب
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="logged-in-menu" id="logged-in-menu" style="display: none;">
+                                <div class="dropdown-header">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h4 id="user-full-name"></h4>
+                                        <p id="user-email"></p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="profile.html" class="dropdown-item">
+                                    <i class="fas fa-user"></i> الملف الشخصي
+                                </a>
+                                <a href="orders.html" class="dropdown-item">
+                                    <i class="fas fa-box"></i> طلباتي
+                                </a>
+                                <a href="favoret.html" class="dropdown-item">
+                                    <i class="fas fa-heart"></i> المفضلة
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" onclick="logout()" class="dropdown-item logout">
+                                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-content">
+                <div id="mobile-nav-links" class="mobile-nav-links"></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="profile-page">
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h1 id="profile-username">جاري التحميل...</h1>
+                    <p><i class="fas fa-envelope"></i> <span id="profile-email-display">...</span></p>
+                    <p><i class="fas fa-id-badge"></i> معرف المستخدم: #<span id="profile-user-id">...</span></p>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-box"></i>
+                        <h3 id="total-orders">0</h3>
+                        <p>إجمالي الطلبات</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <h3 id="pending-orders">0</h3>
+                        <p>طلبات قيد الانتظار</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h3 id="completed-orders">0</h3>
+                        <p>طلبات مكتملة</p>
+                    </div>
+                </div>
+
+                <div class="profile-content">
+                    <div class="info-section">
+                        <h2><i class="fas fa-info-circle"></i> المعلومات الشخصية</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label><i class="fas fa-user"></i> الاسم الكامل</label>
+                                <div class="value" id="full-name">جاري التحميل...</div>
+                            </div>
+                            <div class="info-item">
+                                <label><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+                                <div class="value" id="email-value">جاري التحميل...</div>
+                            </div>
+                            <div class="info-item" id="phone-item" style="display: none;">
+                                <label><i class="fas fa-phone"></i> رقم الهاتف</label>
+                                <div class="value" id="phone-value">غير محدد</div>
+                            </div>
+                            <div class="info-item">
+                                <label><i class="fas fa-calendar-alt"></i> عضو منذ</label>
+                                <div class="value" id="member-since">جاري التحميل...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="orders.html" class="btn btn-primary">
+                            <i class="fas fa-box"></i> عرض طلباتي
+                        </a>
+                        <a href="index.html#products" class="btn btn-secondary">
+                            <i class="fas fa-shopping-bag"></i> تصفح المنتجات
+                        </a>
+                        <a href="favoret.html" class="btn btn-secondary">
+                            <i class="fas fa-heart"></i> المفضلة
+                        </a>
+                        <button onclick="logout()" class="btn btn-danger">
+                            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-content">
+                <div class="footer-section about-section">
+                    <h3>عن otrujjah</h3>
+                    <p>متجر otrujjah متخصص في بيع العطور الفاخرة والأصلية من أفضل العلامات التجارية العالمية بأسعار تنافسية</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100063940726654" class="social-link facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/message/X7YJJ6GMUU2GC1" class="social-link whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section links-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="index.html#products">المنتجات</a></li>
+                        <li><a href="car.html">السلة</a></li>
+                        <li><a href="favoret.html">المفضلة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact-section">
+                    <h3>تواصل معنا</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> info@otrujjah.com</p>
+                        <p><i class="fas fa-phone"></i> +20 110 083 6700</p>
+                        <p><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 otrujjah | . جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="assets/main.min.js?v=2"></script>
+    <script>
+        // Load profile data on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Check authentication
+            if (!AuthService.isAuthenticated()) {
+                UIService.showToast('يجب تسجيل الدخول لعرض الملف الشخصي', 'warning');
+                setTimeout(() => {
+                    window.location.href = 'login.html?redirect=profile.html';
+                }, 1500);
+                return;
+            }
+
+            const user = AppState.currentUser;
+
+            // Display user info
+            document.getElementById('profile-username').textContent = user.username || 'مستخدم';
+            document.getElementById('profile-email-display').textContent = user.email || 'غير محدد';
+            document.getElementById('profile-user-id').textContent = user.id || 'غير محدد';
+            document.getElementById('full-name').textContent = user.username || 'غير محدد';
+            document.getElementById('email-value').textContent = user.email || 'غير محدد';
+
+            // Display phone if available
+            if (user.phone) {
+                document.getElementById('phone-item').style.display = 'block';
+                document.getElementById('phone-value').textContent = user.phone;
+            }
+
+            // Member since (mock data - you can add created_at to database)
+            document.getElementById('member-since').textContent = new Date().toLocaleDateString('ar-EG', {
+                year: 'numeric',
+                month: 'long'
+            });
+
+            // Load order statistics
+            try {
+                const result = await ApiService.get(`/orders/user/${user.id}`);
+                
+                if (result.success && result.data) {
+                    const orders = result.data;
+                    const totalOrders = orders.length;
+                    const pendingOrders = orders.filter(o => o.status === 'pending' || o.status === 'confirmed').length;
+                    const completedOrders = orders.filter(o => o.status === 'delivered').length;
+
+                    document.getElementById('total-orders').textContent = totalOrders;
+                    document.getElementById('pending-orders').textContent = pendingOrders;
+                    document.getElementById('completed-orders').textContent = completedOrders;
+                }
+            } catch (error) {
+                console.error('Error loading order stats:', error);
+            }
+        });
+    </script>
+</body>
+</html>

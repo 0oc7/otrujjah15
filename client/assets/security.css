@@ -1,0 +1,45 @@
+/* ===================================
+   🔒 SECURITY & PROTECTION STYLES
+   =================================== */
+
+/* حماية الصور */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+/* السماح بالتفاعل مع العناصر التفاعلية */
+button, a, input, textarea, select {
+    pointer-events: auto !important;
+}
+
+/* منع Print */
+@media print {
+    body {
+        display: none !important;
+    }
+}
+
+/* Watermark غير مرئي */
+body::after {
+    content: "© Otrujjah 2025";
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0.01;
+    font-size: 1px;
+}
+
+/* منع السحب والإفلات للصور */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+
